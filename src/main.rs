@@ -1,7 +1,7 @@
 // Finds prime numbers. A small project for learning Rust.
 // Maybe add a GUI or at least a CLI.
 
-type Num = i32;
+type Num = i64;
 
 // Return true if p is prime.
 // This implementation unrolls the loop once so it only has to test 2 potential
