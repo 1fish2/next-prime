@@ -46,8 +46,8 @@ fn next_prime(start: Num, up: bool) -> Num {
 
 fn main() {
     loop {
-        println!("Input a number: ");
-        io::stdout().flush().unwrap();  // Q. Why does this emit a newline?
+        print!("Input a number: ");
+        io::stdout().flush().unwrap();
 
         let mut input = String::new();
         io::stdin()
