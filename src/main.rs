@@ -1,6 +1,9 @@
 // Finds prime numbers. A small project for learning Rust.
 // Maybe add a GUI or at least a CLI.
 
+use std::io;
+use std::io::Write;
+
 type Num = i64;
 
 // Return true if p is prime.
@@ -43,15 +46,17 @@ fn next_prime(start: Num, up: bool) -> Num {
 
 fn main() {
     loop {
-        println!("Input a number:");  // TODO: without a newline it just waits!
+        println!("Input a number: ");
+        io::stdout().flush().unwrap();  // Q. Why does this emit a newline?
+
         let mut input = String::new();
-        std::io::stdin()
+        io::stdin()
             .read_line(&mut input)
             .expect("read_line failed");
 
         let mut current: Num = match input.trim().parse() {
             Ok(num) => num,
-            Err(_) => {
+            Err(_) => {  // any input that doesn't parse as an integer
                 println!("bye");
                 break;
             },
