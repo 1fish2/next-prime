@@ -7,7 +7,7 @@ use std::io::Write;
 type Num = i64;
 
 // Return true if p is prime.
-// This implementation unrolls the loop once so it only has to test 2 potential
+// This implementation unrolls the loop once so it only has to test 2 candidate
 // factors out of each 6 sequential numbers.
 fn is_prime(p: Num) -> bool {
     if p < 2 { return false; }
@@ -28,7 +28,7 @@ fn is_prime(p: Num) -> bool {
         factor += 4;
     }
 
-    return factor * factor > p;
+    factor * factor > p
 }
 
 fn next_prime(start: Num, up: bool) -> Num {
@@ -41,7 +41,7 @@ fn next_prime(start: Num, up: bool) -> Num {
         if is_prime(p) { return p; };
         p += delta;
     }
-    return 2;
+    2
 }
 
 fn main() {
