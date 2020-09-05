@@ -6,9 +6,9 @@ use std::io::Write;
 
 type Num = i64;
 
-// Return true if p is prime.
-// This implementation unrolls the loop once so it only has to test 2 candidate
-// factors out of each 6 sequential numbers.
+/// Return true if p is prime.
+/// This implementation unrolls the loop once so it only has to test 2 candidate
+/// factors out of each 6 sequential numbers.
 fn is_prime(p: Num) -> bool {
     if p < 2 { return false; }
 
@@ -17,20 +17,19 @@ fn is_prime(p: Num) -> bool {
     if p % 3 == 0 { return p == 3; }
 
     // Test factors up to sqrt(p), skipping multiples of 2 and 3.
-    // Entering the loop, factor >= 5, p > factor * factor, and p is not
-    // divisible by 2 or 3, so p >= 29 and p > factor + 2, so neither test will
-    // get confused by testing factor == p.
+    // Since factor and p are odd, neither `if` will test a factor > sqrt(p).
     let mut factor: Num = 5;
-    while factor * factor < p {
+    while factor * factor <= p {
         if p % factor == 0 { return false; }
         factor += 2;
         if p % factor == 0 { return false; }
         factor += 4;
     }
 
-    factor * factor > p
+    true
 }
 
+/// Return the next prime upward or downward from `start`.
 fn next_prime(start: Num, up: bool) -> Num {
     if start < 2 { return 2; }
     let delta = (start & 1) + 1;  // delta to the next odd number
