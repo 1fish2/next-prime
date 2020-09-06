@@ -17,11 +17,11 @@ fn is_prime(p: Num) -> bool {
     if p % 3 == 0 { return p == 3; }
 
     // Test factors up to sqrt(p), skipping multiples of 2 and 3.
-    // Since factor and p are odd, neither `if` will test a factor > sqrt(p).
     let mut factor: Num = 5;
     while factor * factor <= p {
         if p % factor == 0 { return false; }
         factor += 2;
+        // p >= 29, so factor < sqrt(p) + 2 < p, so this won't test p % p.
         if p % factor == 0 { return false; }
         factor += 4;
     }
